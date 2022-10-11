@@ -10,7 +10,8 @@ public enum Roman {
     VI(6),
     VII(7),
     VIII(8),
-    IX(9);
+    IX(9),
+    X(10);
 
     private static Map<Integer, Roman> map = new HashMap<>();
 

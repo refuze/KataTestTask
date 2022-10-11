@@ -20,7 +20,7 @@ public class Main {
         try {
             firstNumber = Integer.parseInt(splitedInput[0]);
             secondNumber = Integer.parseInt(splitedInput[2]);
-            if(firstNumber > 0 && firstNumber < 10 && secondNumber > 0 && secondNumber < 10){
+            if(firstNumber > 0 && firstNumber < 11 && secondNumber > 0 && secondNumber < 11){
                 return calculation(firstNumber, secondNumber, splitedInput[1]);
             }
         } catch (NumberFormatException e) {
