@@ -8,6 +8,8 @@ public class Main {
     }
 
     public static String calc(String input) throws Exception {
+        Converter converter = new Converter();
+
         String[] splitedInput = input.split(" ");
 
         if (splitedInput.length != 3){
@@ -16,32 +18,34 @@ public class Main {
 
         int firstNumber;
         int secondNumber;
+        int result;
 
         try {
             firstNumber = Integer.parseInt(splitedInput[0]);
             secondNumber = Integer.parseInt(splitedInput[2]);
             if(firstNumber > 0 && firstNumber < 11 && secondNumber > 0 && secondNumber < 11){
-                return calculation(firstNumber, secondNumber, splitedInput[1]);
+                result = calculation(firstNumber, secondNumber, splitedInput[1]);
+                return String.valueOf(result);
             }
         } catch (NumberFormatException e) {
             try {
-                firstNumber = Roman.valueOf(splitedInput[0]).getIndex();
-                secondNumber = Roman.valueOf(splitedInput[2]).getIndex();
-                return Roman.valueOfInt(Integer.parseInt(calculation(firstNumber, secondNumber, splitedInput[1]))).name();
+                firstNumber = converter.romanToInt(splitedInput[0]);
+                secondNumber = converter.romanToInt(splitedInput[2]);
+                result = calculation(firstNumber, secondNumber, splitedInput[1]);
+                return converter.intToRoman(result);
             } catch (Exception b){
                 throw new Exception();
             }
         }
-
         throw new Exception();
     }
 
-    private static String calculation(int firstNumber, int secondNumber, String operand) throws Exception {
+    private static int calculation(int firstNumber, int secondNumber, String operand) throws Exception {
         switch (operand){
-            case ("/") : return String.valueOf(firstNumber / secondNumber);
-            case ("*") : return String.valueOf(firstNumber * secondNumber);
-            case ("+") : return String.valueOf(firstNumber + secondNumber);
-            case ("-") : return String.valueOf(firstNumber - secondNumber);
+            case ("/") : return firstNumber / secondNumber;
+            case ("*") : return firstNumber * secondNumber;
+            case ("+") : return firstNumber + secondNumber;
+            case ("-") : return firstNumber - secondNumber;
         }
         throw new Exception();
     }
